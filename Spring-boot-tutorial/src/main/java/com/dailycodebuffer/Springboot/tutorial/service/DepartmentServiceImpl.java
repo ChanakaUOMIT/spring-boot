@@ -1,8 +1,11 @@
 package com.dailycodebuffer.Springboot.tutorial.service;
 
+import com.dailycodebuffer.Springboot.tutorial.controller.DepartmentController;
 import com.dailycodebuffer.Springboot.tutorial.entity.Department;
 import com.dailycodebuffer.Springboot.tutorial.error.DepartmentNotFoundException;
 import com.dailycodebuffer.Springboot.tutorial.repository.DepartmentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
+
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
 
     @Override
     public Department saveDepartment(Department department) {
@@ -61,6 +66,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department fetchDepartmentByName(String departmentName) {
+        LOGGER.info("Inside fetchDepartmentByName of DepartmentServiceImpl NAME : "+departmentName);
+
         return departmentRepository.findByDepartmentName(departmentName);
     }
 
