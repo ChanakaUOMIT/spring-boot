@@ -1,4 +1,13 @@
+server:
+  port: '8082'
 spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  profiles: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
@@ -10,5 +19,37 @@ spring:
     show-sql: 'true'
 welcome:
   message: Welcome to Hello World..!
-server:
-  port: '8082'
+
+
+---
+
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-qa
+    password: passwordd
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: Welcome to Hello World..!
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-prod
+    password: passwordd
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: Welcome to Hello World..!
+
